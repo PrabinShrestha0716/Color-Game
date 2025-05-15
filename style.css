@@ -1,0 +1,56 @@
+body{
+    background-color: purple;
+}
+
+#heading{
+    font-family: 'Courier New', Courier, monospace;
+    margin-left: 20%;
+    color:beige;
+    font-size: 4rem;
+}
+
+#game{
+    background-color:skyblue;
+    margin: 10%;
+}
+
+#blue{
+    height: 8rem;
+    width: 8rem;
+    background-color: blue;
+    margin-left: 35%;
+    margin-top: 5%;
+    display:inline-block;
+    border-radius: 15px;
+}
+
+#red{
+    height: 8rem;
+    width: 8rem;
+    background-color: red;
+    margin-left: 5%;
+    margin-top: 5%;
+    border-radius: 15px;
+    display: inline-block;
+}
+#green{
+    height: 8rem;
+    width: 8rem;
+    background-color: green;
+    margin-left: 35%;
+    margin-top: 5%;
+     margin-bottom: 10%;
+     border-radius: 15px;
+    display:inline-block;
+}
+
+#yellow{
+    height: 8rem;
+    width: 8rem;
+    background-color: yellow;
+    margin-left: 5%;
+    margin-top: 5%;
+    margin-bottom: 10%;
+    border-radius: 15px;
+    display: inline-block;
+}
