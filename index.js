@@ -1,97 +1,51 @@
 
 var buttonColors = ["blue", "red", "green", "yellow"];
+
 var gamePattern =[];
-var random_number;
-var score = 0;
 var userPattern =[];
-var userClick;
+
+var random_number;
+
+var started = false;
+var score = 0;
+
+var userClick = 0;
 var randomChosenColour;
 
-
-$(document).on("keypress",function nextsequence(){
- random_number = Math.floor (Math.random() * 3);
-
+$(document).on("keypress",function ()
+{
+  nextSequence();
+  $("h1").text("Game Started: Score: "+ score)
 });
 
-$(game).on("click",function nextsequence(){
- random_number = Math.floor (Math.random() * 3);
+function nextSequence(){
+random_number = Math.floor (Math.random() * 3);
+randomChosenColour = buttonColors[random_number];
+gamePattern= randomChosenColour;
 
-});
-
-gamePattern.push(randomChosenColour);
-
-$(document).on("keypress", function(){
- $("h1").text("Game started. Score: "+ score);
- gamePattern=buttonColors[random_number];
-    if (gamePattern=="blue") {
-    $("#blue").fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
-  }
-      if (gamePattern=="red") {
-    $("#red").fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
-  }
-      if (gamePattern=="green") {
-    $("#green").fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
-  }
-      if (gamePattern=="yellow") {
-    $("#yellow").fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
-  }
-
-});
+$("#" + randomChosenColour).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+playSound(randomChosenColour);
+}
 
 
- $(document).on("click", function(){
- $("h1").text("Game started. Score: "+ score);
- gamePattern=buttonColors[random_number];
+$(".btn").on("click", function (){
+  $(this).animate({opacity:"50%"}).animate({opacity:"100%"});
+  $("h1").fadeOut(200).fadeIn(200);
+var userChosenColour = $(this).attr("id");
+//  userPattern.push(userChosenColour);
+ playSound(userChosenColour);
 
-   if (gamePattern=="blue") {
-    $("#blue").fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
-  }
-        if (gamePattern=="red") {
-    $("#red").fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
-  }
-      if (gamePattern=="green") {
-    $("#green").fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
-  }
-      if (gamePattern=="yellow") {
-    $("#yellow").fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
-  }
-
- });
-
-
-$("#blue").on("click", function() {
-	document.getElementById("Blue").play();
-    userClick=0;
-    userPattern = buttonColors[userClick];
-     
-});
-
-$("#red").on("click",function(){
-document.getElementById("Red").play();
-userClick=1;
-userPattern = buttonColors[userClick];
-    
-});
-
-$("#green").on("click",function(){
-document.getElementById("Green").play();
-userClick=2;
-userPattern = buttonColors[userClick];
-});
-
-$("#yellow").on("click",function(){
-document.getElementById("Yellow").play();
-userClick=3;
-userPattern = buttonColors[userClick];  
-});
-
-
-$("#game").on("click", function scoreboard(){
-
-    if (gamePattern==userPattern) 
+ if (gamePattern==userChosenColour) 
         {
-         $("h1").text("Game started. Score: "+ score);
-            score = score+1;   
+          score = score+1;
+         $("h1").text("Game started. Score: "+ score); 
+             nextSequence(); 
         } 
+ 
 
-});
+})
+
+function playSound(name){
+   var audio = new Audio("sounds/" + randomChosenColour + ".mp3");
+  audio.play();
+}
